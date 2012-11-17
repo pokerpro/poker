@@ -1,0 +1,12 @@
+# idea conf files
+.idea
+*.iml
+*.ipr
+*.iws
+
+# Java class files
+*.class
+
+# generated files
+bin/
+gen/
