@@ -10,3 +10,6 @@
 # generated files
 bin/
 gen/
+
+# libraries
+lib/
