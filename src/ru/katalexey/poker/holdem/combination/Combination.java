@@ -89,7 +89,7 @@ public class Combination implements Comparable<Combination> {
 
 	private static Combination evaluateCombination5(Card[] cards) {
 		CombinationType type = HighCard;
-		Rank high = Deuce;
+		Rank high = DEUCE;
 		Rank[] kickers = null;
 		boolean suited = isSuited(cards);
 		List<Rank> list = Arrays.asList(cards[0].rank, cards[1].rank,
@@ -102,12 +102,12 @@ public class Combination implements Comparable<Combination> {
 			type = (succesive) ? StraightFlush : Flush;
 			high = r[4];
 			kickers = (succesive) ? null : new Rank[] { r[3], r[2], r[1], r[0] };
-			if (succesive && r[4] == Ace && r[0] == Deuce) {
-				high = Five;
+			if (succesive && r[4] == ACE && r[0] == DEUCE) {
+				high = FIVE;
 			}
 			return new Combination(type, high, kickers);
 		}
-		if (succesive) return new Combination(Straight, (r[4] == Ace && r[0] == Deuce) ? r[3] : r[4], kickers);
+		if (succesive) return new Combination(Straight, (r[4] == ACE && r[0] == DEUCE) ? r[3] : r[4], kickers);
 		int[] t = new int[] { 1, 0, 0, 0, 0 };
 		int j = 0;
 		for (int i = 1; i < 5; i++, t[j]++)
@@ -143,8 +143,8 @@ public class Combination implements Comparable<Combination> {
 			return true;
 		}
 		for (int i = 1; i < len; ++i) {
-			if (ranks[i - 1].number + 1 != ranks[i].number) {
-                return i + 1 == len && ranks[i] == Ace && ranks[0] == Deuce;
+			if (ranks[i - 1].index + 1 != ranks[i].index) {
+                return i + 1 == len && ranks[i] == ACE && ranks[0] == DEUCE;
             }
 		}
 		return true;

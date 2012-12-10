@@ -78,6 +78,7 @@ public final class Deck {
         }
         return newDeck;
     }
+
     public String toString() {
         return deck.toString();
     }

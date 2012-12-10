@@ -12,7 +12,7 @@ public class HandTest extends TestCase {
 		HoleCards h = getHoleCards(d.getCard(1), d.getCard(14));
 		assertEquals("[Ah Ad]", h.toString());
 		h = getHoleCards(d.getCard(27), d.getCard(14));
-		assertEquals("[As Ad]", h.toString());
+		assertEquals("[Ad As]", h.toString());
 		h = getHoleCards(d.getCard(2), d.getCard(15));
 		assertEquals("[2h 2d]", h.toString());
 		h = getHoleCards(d.getCard(13), d.getCard(51));

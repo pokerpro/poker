@@ -1,43 +1,93 @@
 package ru.katalexey.poker.deck;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
-public class Card {
-//	hA(0),  h2(1),  h3(2),  h4(3),  h5(4),  h6(5),  h7(6),  h8(7),  h9(8),  hT(9),  hJ(10), hQ(11), hK(12),
-//	dA(13), d2(14), d3(15), d4(16), d5(17), d6(18), d7(19), d8(20), d9(21), dT(22), dJ(23), dQ(24), dK(25),
-//    cA(26), c2(27), c3(28), c4(29), c5(30), c6(31), c7(32), c8(33), c9(34), cT(35), cJ(36), cQ(37), cK(38),
-//    sA(39), s2(40), s3(41), s4(42), s5(43), s6(44), s7(45), s8(46), s9(47), sT(48), sJ(49), sQ(50), sK(51);
+public enum Card {
+    ACE_HEARTS(Rank.ACE, Suit.HEARTS),
+    DEUCE_HEARTS(Rank.DEUCE, Suit.HEARTS),
+    THREE_HEARTS(Rank.THREE, Suit.HEARTS),
+    FOUR_HEARTS(Rank.FOUR, Suit.HEARTS),
+    FIVE_HEARTS(Rank.FIVE, Suit.HEARTS),
+    SIX_HEARTS(Rank.SIX, Suit.HEARTS),
+    SEVEN_HEARTS(Rank.SEVEN, Suit.HEARTS),
+    EIGHT_HEARTS(Rank.EIGHT, Suit.HEARTS),
+    NINE_HEARTS(Rank.NINE, Suit.HEARTS),
+    TEN_HEARTS(Rank.TEN, Suit.HEARTS),
+    JACK_HEARTS(Rank.JACK, Suit.HEARTS),
+    QUEEN_HEARTS(Rank.QUEEN, Suit.HEARTS),
+    KING_HEARTS(Rank.KING, Suit.HEARTS),
+
+    ACE_DIAMONDS(Rank.ACE, Suit.DIAMONDS),
+    DEUCE_DIAMONDS(Rank.DEUCE, Suit.DIAMONDS),
+    THREE_DIAMONDS(Rank.THREE, Suit.DIAMONDS),
+    FOUR_DIAMONDS(Rank.FOUR, Suit.DIAMONDS),
+    FIVE_DIAMONDS(Rank.FIVE, Suit.DIAMONDS),
+    SIX_DIAMONDS(Rank.SIX, Suit.DIAMONDS),
+    SEVEN_DIAMONDS(Rank.SEVEN, Suit.DIAMONDS),
+    EIGHT_DIAMONDS(Rank.EIGHT, Suit.DIAMONDS),
+    NINE_DIAMONDS(Rank.NINE, Suit.DIAMONDS),
+    TEN_DIAMONDS(Rank.TEN, Suit.DIAMONDS),
+    JACK_DIAMONDS(Rank.JACK, Suit.DIAMONDS),
+    QUEEN_DIAMONDS(Rank.QUEEN, Suit.DIAMONDS),
+    KING_DIAMONDS(Rank.KING, Suit.DIAMONDS),
+
+    ACE_SPADES(Rank.ACE, Suit.SPADES),
+    DEUCE_SPADES(Rank.DEUCE, Suit.SPADES),
+    THREE_SPADES(Rank.THREE, Suit.SPADES),
+    FOUR_SPADES(Rank.FOUR, Suit.SPADES),
+    FIVE_SPADES(Rank.FIVE, Suit.SPADES),
+    SIX_SPADES(Rank.SIX, Suit.SPADES),
+    SEVEN_SPADES(Rank.SEVEN, Suit.SPADES),
+    EIGHT_SPADES(Rank.EIGHT, Suit.SPADES),
+    NINE_SPADES(Rank.NINE, Suit.SPADES),
+    TEN_SPADES(Rank.TEN, Suit.SPADES),
+    JACK_SPADES(Rank.JACK, Suit.SPADES),
+    QUEEN_SPADES(Rank.QUEEN, Suit.SPADES),
+    KING_SPADES(Rank.KING, Suit.SPADES),
+
+    ACE_CLUBS(Rank.ACE, Suit.CLUBS),
+    DEUCE_CLUBS(Rank.DEUCE, Suit.CLUBS),
+    THREE_CLUBS(Rank.THREE, Suit.CLUBS),
+    FOUR_CLUBS(Rank.FOUR, Suit.CLUBS),
+    FIVE_CLUBS(Rank.FIVE, Suit.CLUBS),
+    SIX_CLUBS(Rank.SIX, Suit.CLUBS),
+    SEVEN_CLUBS(Rank.SEVEN, Suit.CLUBS),
+    EIGHT_CLUBS(Rank.EIGHT, Suit.CLUBS),
+    NINE_CLUBS(Rank.NINE, Suit.CLUBS),
+    TEN_CLUBS(Rank.TEN, Suit.CLUBS),
+    JACK_CLUBS(Rank.JACK, Suit.CLUBS),
+    QUEEN_CLUBS(Rank.QUEEN, Suit.CLUBS),
+    KING_CLUBS(Rank.KING, Suit.CLUBS);
+
+    private static final Card[][] storage = new Card[13][4];
 
     private static final List<Card> all = new ArrayList<Card>(52);
-    private static final Map<Rank, Map<Suit, Card>> map = new HashMap<Rank, Map<Suit, Card>>(13);
-
-    static {
-        for (Rank rank : Rank.values()) {
-            Map<Suit, Card> map = new HashMap<Suit, Card>(4);
-            for (Suit suit : Suit.values()) {
-                Card card = new Card(rank, suit);
-                all.add(card);
-                map.put(suit, card);
-            }
-            Card.map.put(rank, map);
-        }
-    }
 
     public static List<Card> getAll() {
         return Collections.unmodifiableList(all);
     }
 
+    static {
+        for (Card card : Card.values()) {
+            storage[card.rank.index][card.suit.index] = card;
+            all.add(card);
+        }
+    }
+
+    public final Rank rank;
+    public final Suit suit;
+
     private Card(Rank r, Suit s) {
         rank = r;
         suit = s;
     }
-    public final Rank rank;
-
-	public final Suit suit;
 
     public static Card of(Rank r, Suit s) {
-        return map.get(r).get(s);
+        return storage[r.index][s.index];
     }
+
 	public String toString() {
 		return "" + rank.name + suit.name;
 	}
