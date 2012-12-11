@@ -5,21 +5,20 @@ import java.util.Collections;
 import java.util.List;
 
 public enum Card {
-    ACE_HEARTS(Rank.ACE, Suit.HEARTS),
-    DEUCE_HEARTS(Rank.DEUCE, Suit.HEARTS),
-    THREE_HEARTS(Rank.THREE, Suit.HEARTS),
-    FOUR_HEARTS(Rank.FOUR, Suit.HEARTS),
-    FIVE_HEARTS(Rank.FIVE, Suit.HEARTS),
-    SIX_HEARTS(Rank.SIX, Suit.HEARTS),
-    SEVEN_HEARTS(Rank.SEVEN, Suit.HEARTS),
-    EIGHT_HEARTS(Rank.EIGHT, Suit.HEARTS),
-    NINE_HEARTS(Rank.NINE, Suit.HEARTS),
-    TEN_HEARTS(Rank.TEN, Suit.HEARTS),
-    JACK_HEARTS(Rank.JACK, Suit.HEARTS),
-    QUEEN_HEARTS(Rank.QUEEN, Suit.HEARTS),
-    KING_HEARTS(Rank.KING, Suit.HEARTS),
+    DEUCE_CLUBS(Rank.DEUCE, Suit.CLUBS),
+    THREE_CLUBS(Rank.THREE, Suit.CLUBS),
+    FOUR_CLUBS(Rank.FOUR, Suit.CLUBS),
+    FIVE_CLUBS(Rank.FIVE, Suit.CLUBS),
+    SIX_CLUBS(Rank.SIX, Suit.CLUBS),
+    SEVEN_CLUBS(Rank.SEVEN, Suit.CLUBS),
+    EIGHT_CLUBS(Rank.EIGHT, Suit.CLUBS),
+    NINE_CLUBS(Rank.NINE, Suit.CLUBS),
+    TEN_CLUBS(Rank.TEN, Suit.CLUBS),
+    JACK_CLUBS(Rank.JACK, Suit.CLUBS),
+    QUEEN_CLUBS(Rank.QUEEN, Suit.CLUBS),
+    KING_CLUBS(Rank.KING, Suit.CLUBS),
+    ACE_CLUBS(Rank.ACE, Suit.CLUBS),
 
-    ACE_DIAMONDS(Rank.ACE, Suit.DIAMONDS),
     DEUCE_DIAMONDS(Rank.DEUCE, Suit.DIAMONDS),
     THREE_DIAMONDS(Rank.THREE, Suit.DIAMONDS),
     FOUR_DIAMONDS(Rank.FOUR, Suit.DIAMONDS),
@@ -32,8 +31,22 @@ public enum Card {
     JACK_DIAMONDS(Rank.JACK, Suit.DIAMONDS),
     QUEEN_DIAMONDS(Rank.QUEEN, Suit.DIAMONDS),
     KING_DIAMONDS(Rank.KING, Suit.DIAMONDS),
+    ACE_DIAMONDS(Rank.ACE, Suit.DIAMONDS),
 
-    ACE_SPADES(Rank.ACE, Suit.SPADES),
+    DEUCE_HEARTS(Rank.DEUCE, Suit.HEARTS),
+    THREE_HEARTS(Rank.THREE, Suit.HEARTS),
+    FOUR_HEARTS(Rank.FOUR, Suit.HEARTS),
+    FIVE_HEARTS(Rank.FIVE, Suit.HEARTS),
+    SIX_HEARTS(Rank.SIX, Suit.HEARTS),
+    SEVEN_HEARTS(Rank.SEVEN, Suit.HEARTS),
+    EIGHT_HEARTS(Rank.EIGHT, Suit.HEARTS),
+    NINE_HEARTS(Rank.NINE, Suit.HEARTS),
+    TEN_HEARTS(Rank.TEN, Suit.HEARTS),
+    JACK_HEARTS(Rank.JACK, Suit.HEARTS),
+    QUEEN_HEARTS(Rank.QUEEN, Suit.HEARTS),
+    KING_HEARTS(Rank.KING, Suit.HEARTS),
+    ACE_HEARTS(Rank.ACE, Suit.HEARTS),
+
     DEUCE_SPADES(Rank.DEUCE, Suit.SPADES),
     THREE_SPADES(Rank.THREE, Suit.SPADES),
     FOUR_SPADES(Rank.FOUR, Suit.SPADES),
@@ -46,46 +59,28 @@ public enum Card {
     JACK_SPADES(Rank.JACK, Suit.SPADES),
     QUEEN_SPADES(Rank.QUEEN, Suit.SPADES),
     KING_SPADES(Rank.KING, Suit.SPADES),
+    ACE_SPADES(Rank.ACE, Suit.SPADES);
 
-    ACE_CLUBS(Rank.ACE, Suit.CLUBS),
-    DEUCE_CLUBS(Rank.DEUCE, Suit.CLUBS),
-    THREE_CLUBS(Rank.THREE, Suit.CLUBS),
-    FOUR_CLUBS(Rank.FOUR, Suit.CLUBS),
-    FIVE_CLUBS(Rank.FIVE, Suit.CLUBS),
-    SIX_CLUBS(Rank.SIX, Suit.CLUBS),
-    SEVEN_CLUBS(Rank.SEVEN, Suit.CLUBS),
-    EIGHT_CLUBS(Rank.EIGHT, Suit.CLUBS),
-    NINE_CLUBS(Rank.NINE, Suit.CLUBS),
-    TEN_CLUBS(Rank.TEN, Suit.CLUBS),
-    JACK_CLUBS(Rank.JACK, Suit.CLUBS),
-    QUEEN_CLUBS(Rank.QUEEN, Suit.CLUBS),
-    KING_CLUBS(Rank.KING, Suit.CLUBS);
-
-    private static final Card[][] storage = new Card[13][4];
-
-    private static final List<Card> all = new ArrayList<Card>(52);
-
-    public static List<Card> getAll() {
-        return Collections.unmodifiableList(all);
-    }
+    private static final Card[][] cards = new Card[13][4];
 
     static {
         for (Card card : Card.values()) {
-            storage[card.rank.index][card.suit.index] = card;
-            all.add(card);
+            cards[card.rank.index][card.suit.index] = card;
         }
     }
 
     public final Rank rank;
     public final Suit suit;
+    public final int index;
 
     private Card(Rank r, Suit s) {
         rank = r;
         suit = s;
+        index = 13 * s.index + r.index;
     }
 
     public static Card of(Rank r, Suit s) {
-        return storage[r.index][s.index];
+        return cards[r.index][s.index];
     }
 
 	public String toString() {

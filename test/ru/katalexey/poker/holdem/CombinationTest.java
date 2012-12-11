@@ -38,54 +38,54 @@ public class CombinationTest extends TestCase {
 	}
 	
 	public void testResolveCombinations() {
-		assertEquals(StraightFlush, strFlush.getType());
+		assertEquals(STRAIGHT_FLUSH, strFlush.getType());
 		assertEquals(ACE, strFlush.getHighCardRank());
 
-		assertEquals(Flush, flush.getType());
+		assertEquals(FLUSH, flush.getType());
 		assertEquals(KING, flush.getHighCardRank());
 		assertEquals(NINE, flush.getKickers()[1]);
 		
-		assertEquals(Straight, straight.getType());
+		assertEquals(STRAIGHT, straight.getType());
 		assertEquals(EIGHT, straight.getHighCardRank());
 		
-		assertEquals(Straight, wheel.getType());
+		assertEquals(STRAIGHT, wheel.getType());
 		assertEquals(FIVE, wheel.getHighCardRank());
 		
-		assertEquals(Quad, quad.getType());
+		assertEquals(QUAD, quad.getType());
 		assertEquals(SEVEN, quad.getHighCardRank());
 		assertEquals(JACK, quad.getKickers()[0]);
 		
-		assertEquals(FullHouse, fullHouseQueenHigh.getType());
+		assertEquals(FULL_HOUSE, fullHouseQueenHigh.getType());
 		assertEquals(QUEEN, fullHouseQueenHigh.getHighCardRank());
 		assertEquals(KING, fullHouseQueenHigh.getKickers()[0]);
 		
-		assertEquals(Trips, trips.getType());
+		assertEquals(TRIPS, trips.getType());
 		assertEquals(TEN, trips.getHighCardRank());
 		assertEquals(JACK, trips.getKickers()[0]);
 		
-		assertEquals(TwoPair, twoPair.getType());
+		assertEquals(TWO_PAIR, twoPair.getType());
 		assertEquals(TEN, twoPair.getHighCardRank());
 		assertEquals(SEVEN, twoPair.getKickers()[0]);
 		
-		assertEquals(OnePair, onePair.getType());
+		assertEquals(ONE_PAIR, onePair.getType());
 		assertEquals(JACK, onePair.getHighCardRank());
 		assertEquals(QUEEN, onePair.getKickers()[1]);
 	
-		assertEquals(HighCard, highCard.getType());
+		assertEquals(HIGH_CARD, highCard.getType());
 		assertEquals(ACE, highCard.getHighCardRank());
 		assertEquals(SIX, highCard.getKickers()[2]);
 	}
 
     public void testResolveCombinations6() {
-        assertEquals(Straight, straight6.getType());
+        assertEquals(STRAIGHT, straight6.getType());
         assertEquals(EIGHT, straight6.getHighCardRank());
     }
     public void testResolveCombinations7() {
-        assertEquals(Flush, flush7.getType());
+        assertEquals(FLUSH, flush7.getType());
         assertEquals(KING, flush7.getHighCardRank());
         assertEquals(TEN, flush7.getKickers()[0]);
 
-        assertEquals(FullHouse, fullHouse7.getType());
+        assertEquals(FULL_HOUSE, fullHouse7.getType());
         assertEquals(DEUCE, fullHouse7.getHighCardRank());
         assertEquals(ACE, fullHouse7.getKickers()[0]);
     }

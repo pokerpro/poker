@@ -6,22 +6,22 @@ public class DeckTest extends TestCase {
 
 	public static void testCardsInDeck() {
 		Deck d = new Deck();
-		assertEquals("Ah", d.getCard(1).toString());
-		assertEquals("Ad", d.getCard(14).toString());
-		assertEquals("As", d.getCard(27).toString());
-		assertEquals("Ac", d.getCard(40).toString());
-		assertEquals("2h", d.getCard(2).toString());
-		assertEquals("3d", d.getCard(16).toString());
-		assertEquals("4s", d.getCard(30).toString());
-		assertEquals("5c", d.getCard(44).toString());
-		assertEquals("3h", d.getCard(3).toString());
-		assertEquals("5d", d.getCard(18).toString());
-		assertEquals("7s", d.getCard(33).toString());
-		assertEquals("9c", d.getCard(48).toString());
-		assertEquals("4h", d.getCard(4).toString());
-		assertEquals("7d", d.getCard(20).toString());
-		assertEquals("Ts", d.getCard(36).toString());
-		assertEquals("Kc", d.getCard(52).toString());
+		assertEquals("2c", d.getCard(1).toString());
+		assertEquals("2d", d.getCard(14).toString());
+		assertEquals("2h", d.getCard(27).toString());
+		assertEquals("2s", d.getCard(40).toString());
+		assertEquals("3c", d.getCard(2).toString());
+		assertEquals("4d", d.getCard(16).toString());
+		assertEquals("5h", d.getCard(30).toString());
+		assertEquals("6s", d.getCard(44).toString());
+		assertEquals("4c", d.getCard(3).toString());
+		assertEquals("6d", d.getCard(18).toString());
+		assertEquals("8h", d.getCard(33).toString());
+		assertEquals("Ts", d.getCard(48).toString());
+		assertEquals("5c", d.getCard(4).toString());
+		assertEquals("8d", d.getCard(20).toString());
+		assertEquals("Jh", d.getCard(36).toString());
+		assertEquals("As", d.getCard(52).toString());
 	}
 	
 	// if failed - try again

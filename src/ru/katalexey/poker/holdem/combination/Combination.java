@@ -88,7 +88,7 @@ public class Combination implements Comparable<Combination> {
 	}
 
 	private static Combination evaluateCombination5(Card[] cards) {
-		CombinationType type = HighCard;
+		CombinationType type = HIGH_CARD;
 		Rank high = DEUCE;
 		Rank[] kickers = null;
 		boolean suited = isSuited(cards);
@@ -99,7 +99,7 @@ public class Combination implements Comparable<Combination> {
 				list.get(3), list.get(4) };
 		boolean succesive = isSuccesive(r);
 		if (suited) {
-			type = (succesive) ? StraightFlush : Flush;
+			type = (succesive) ? STRAIGHT_FLUSH : FLUSH;
 			high = r[4];
 			kickers = (succesive) ? null : new Rank[] { r[3], r[2], r[1], r[0] };
 			if (succesive && r[4] == ACE && r[0] == DEUCE) {
@@ -107,7 +107,7 @@ public class Combination implements Comparable<Combination> {
 			}
 			return new Combination(type, high, kickers);
 		}
-		if (succesive) return new Combination(Straight, (r[4] == ACE && r[0] == DEUCE) ? r[3] : r[4], kickers);
+		if (succesive) return new Combination(STRAIGHT, (r[4] == ACE && r[0] == DEUCE) ? r[3] : r[4], kickers);
 		int[] t = new int[] { 1, 0, 0, 0, 0 };
 		int j = 0;
 		for (int i = 1; i < 5; i++, t[j]++)
@@ -115,24 +115,24 @@ public class Combination implements Comparable<Combination> {
 		switch (j) {
 		case 4:
 			kickers = new Rank[] {r[3],r[2],r[1],r[0]};
-			return new Combination(HighCard, r[4], kickers);
+			return new Combination(HIGH_CARD, r[4], kickers);
 		case 1:
-			type = (t[0] == 1 || t[0] == 4) ? Quad : FullHouse;
+			type = (t[0] == 1 || t[0] == 4) ? QUAD : FULL_HOUSE;
 			high = (t[0] < 3) ? r[4] : r[0];
 			kickers = (t[0] < 3) ? new Rank[] {r[0]} : new Rank[] {r[4]};
 			return new Combination(type, high, kickers);
 		case 2:
 			switch (t[0]) {
-			case 3: return new Combination(Trips, r[0], new Rank[] {r[4],r[3]});
-			case 2: return new Combination(TwoPair, r[3], new Rank[] {r[0],(t[1] == 2) ? r[4] : r[2]});
-			case 1: return (t[1] == 2) ? new Combination(TwoPair, r[3], new Rank[] {r[1],r[0]}) 
-					: new Combination(Trips, r[3], new Rank[] {r[4],r[0]});
+			case 3: return new Combination(TRIPS, r[0], new Rank[] {r[4],r[3]});
+			case 2: return new Combination(TWO_PAIR, r[3], new Rank[] {r[0],(t[1] == 2) ? r[4] : r[2]});
+			case 1: return (t[1] == 2) ? new Combination(TWO_PAIR, r[3], new Rank[] {r[1],r[0]})
+					: new Combination(TRIPS, r[3], new Rank[] {r[4],r[0]});
 			}
 		case 3:
-			if (t[0] == 2) return new Combination(OnePair, r[0], new Rank[] {r[4],r[3],r[2]});
-			if (t[1] == 2) return new Combination(OnePair, r[1], new Rank[] {r[4],r[3],r[0]});
-			if (t[2] == 2) return new Combination(OnePair, r[2], new Rank[] {r[4],r[1],r[0]});
-			if (t[3] == 2) return new Combination(OnePair, r[3], new Rank[] {r[2],r[1],r[0]});
+			if (t[0] == 2) return new Combination(ONE_PAIR, r[0], new Rank[] {r[4],r[3],r[2]});
+			if (t[1] == 2) return new Combination(ONE_PAIR, r[1], new Rank[] {r[4],r[3],r[0]});
+			if (t[2] == 2) return new Combination(ONE_PAIR, r[2], new Rank[] {r[4],r[1],r[0]});
+			if (t[3] == 2) return new Combination(ONE_PAIR, r[3], new Rank[] {r[2],r[1],r[0]});
 		}
 		return new Combination(type, high, kickers);
 	}

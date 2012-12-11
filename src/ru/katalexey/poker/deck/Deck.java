@@ -23,7 +23,7 @@ public final class Deck {
 	}
 	
 	public Deck(final boolean isShuffled) {
-		deck.addAll(Card.getAll());
+		deck.addAll(Arrays.asList(Card.values()));
 		if (isShuffled) {
 			shuffle();
 		}

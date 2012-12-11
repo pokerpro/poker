@@ -2,26 +2,20 @@ package ru.katalexey.poker.holdem.holecards;
 
 import ru.katalexey.poker.deck.*;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public final class HoleCards {
 
-    static final Map<Card, Map<Card, HoleCards>> all = new HashMap<Card, Map<Card, HoleCards>>();
+    static final HoleCards[][] all = new HoleCards[52][52];
 
     static {
-    	List<Card> allCards = Card.getAll();
-        for (Card c : allCards) {
-            all.put(c, new HashMap<Card, HoleCards>());
-        }
+    	Card[] allCards = Card.values();
         for (Card c1 : allCards) {
             for (Card c2: allCards) {
                 if (c1 != c2) {
                     HoleCards hc = new HoleCards(c1, c2);
-                    all.get(c1).put(c2, hc);
-                    all.get(c2).put(c1, hc);
+                    all[c1.index][c2.index] = hc;
+                    all[c2.index][c1.index] = hc;
                 } else break;
             }
         }
@@ -29,16 +23,14 @@ public final class HoleCards {
 
     static List<HoleCards> getAll() {
         List<HoleCards> res = new LinkedList<HoleCards>();
-        for (Map<Card, HoleCards> m: all.values()) {
-            for (HoleCards hc : m.values()) {
-                res.add(hc);
-            }
+        for (HoleCards[] m: all) {
+            Collections.addAll(res, m);
         }
         return res;
     }
 
     public static HoleCards getHoleCards(Card c1, Card c2) {
-        return all.get(c1).get(c2);
+        return all[c1.index][c2.index];
     }
 
 	public final Card first;
